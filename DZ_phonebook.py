@@ -21,3 +21,20 @@ sql_name = ''
 sql_surname = ''
 sql_number_phone = ''
 sql_birthday = ''
+
+#создаём подключение к БД
+conn = sl.connect('tel_sprav.db')
+# #создаём курсор - объект для выполнения SQL
+cur = conn.cursor()
+
+# #создали SQL запрос и выполнили
+cur.execute("""
+            CREATE TABLE IF NOT EXISTS users
+            (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            surname TEXT,
+            number_phone TEXT,
+            birthday TEXT
+            );
+            """)
