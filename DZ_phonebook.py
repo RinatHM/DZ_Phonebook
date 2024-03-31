@@ -38,3 +38,43 @@ cur.execute("""
             birthday TEXT
             );
             """)
+
+while True: # запуск программы
+    cur.execute("SELECT * from users;")
+   # print(cur.fetchall()) # входим и
+    for i in cur.fetchall():
+            print(i)
+    command=input("Введите команду ")
+    if command =="/change":
+        sql_name = input("Введите имя ")
+        sql_surname = input("Введите фамилию ")
+        sql_number_phone = input("Введите новый номер ")
+        change_values()
+        cur.execute("SELECT * from users;")
+        for i in cur.fetchall():
+            print(i)
+        break
+    if command =="/add":
+        sql_name = input("Введите имя ")
+        sql_surname = input("Введите фамилию ")
+        sql_number_phone = input("Введите новый номер ")
+        sql_birthday = input("Введите дату рождения")
+        add_values()
+        cur.execute("SELECT * from users;")
+        for i in cur.fetchall():
+            print(i)
+        break
+    if command =="/find":
+        sql_name = input("Введите имя ")
+        find_values()
+        print(*cur.fetchall()) #
+        break
+    if command =="/del":
+        sql_name = input("Введите имя ")
+        sql_surname = input("Введите фамилию ")
+        del_values()
+        print(f"Номер под именем {sql_name} {sql_surname} удалён")
+        print(*cur.fetchall()) # входим и просматриваем справочник
+        break
+
+conn.commit()
