@@ -41,7 +41,7 @@ cur.execute("""
 
 while True: # запуск программы
     cur.execute("SELECT * from users;")
-   # print(cur.fetchall()) # входим и
+    print(cur.fetchall()) # входим и
     for i in cur.fetchall():
             print(i)
     command=input("Введите команду ")
@@ -76,5 +76,20 @@ while True: # запуск программы
         print(f"Номер под именем {sql_name} {sql_surname} удалён")
         print(*cur.fetchall()) # входим и просматриваем справочник
         break
+    if command =="/show":
+        # sql_name = input("Введите имя ")
+        # sql_surname = input("Введите фамилию ")
+        # del_values()
+        # print(f"Номер под именем {sql_name} {sql_surname} удалён")
+        # print(*cur.fetchall()) # входим и просматриваем справочник
+        # break
+        choice = choicebox("Выберите запрос", "Главная форма",
+                   ["Все записи", "Только Ваня"])
 
+        if choice == "Все записи":
+            msg = str(select_all())
+            msgbox(msg, "Результат запроса")
+        elif choice == "Только Ваня":
+            msg = str(select_ivan())
+            msgbox(msg, "Результат запроса")
 conn.commit()
